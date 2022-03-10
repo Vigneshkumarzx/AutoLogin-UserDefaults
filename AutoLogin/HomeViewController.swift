@@ -15,8 +15,14 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func logOutTapped(_ sender: Any) {
+        
+        let loginViewController = storyboard?.instantiateViewController(withIdentifier: "ViewController")
+        
         UserDefaults.standard.set(false, forKey: "ISUSERLOGGED")
-        self.navigationController?.popToRootViewController(animated: true)
+        let mySceneDelegate = self.view.window!.windowScene!.delegate as! SceneDelegate
+        mySceneDelegate.window?.rootViewController = UINavigationController(rootViewController: loginViewController!)
+        mySceneDelegate.window?.makeKeyAndVisible()
+        
     }
     
 }
